@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOLOv8 Object Detection - Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-eye"></i> YOLOv8 Object Detection</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('about') }}">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="results-header">
+            <div class="container">
+                <h2>Detection Results</h2>
+                <div class="results-summary">
+                    <div class="summary-item">
+                        <i class="fas fa-object-group"></i>
+                        <span>{{ detection_count }} objects detected</span>
+                    </div>
+                    <div class="summary-item">
+                        <i class="fas fa-clock"></i>
+                        <span>{{ "%.2f"|format(inference_time * 1000) }} ms processing time</span>
+                    </div>
+                    <div class="summary-item">
+                        <i class="fas fa-percentage"></i>
+                        <span>{{ "%.2f"|format(confidence) }} confidence threshold</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="results-content">
+            <div class="container">
+                <div class="results-grid">
+                    <div class="result-card">
+                        <h3>Original Image</h3>
+                        <div class="image-container">
+                            <img src="{{ original_image }}" alt="Original image" id="original-image">
+                        </div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <h3>Detection Results</h3>
+                        <div class="image-container">
+                            <img src="{{ result_image }}" alt="Detection results" id="result-image">
+                        </div>
+                        <div class="image-actions">
+                            <a href="{{ result_image }}" download class="btn btn-primary">
+                                <i class="fas fa-download"></i> Download Result
+                            </a>
+                            <button id="fullscreen-btn" class="btn btn-outline">
+                                <i class="fas fa-expand"></i> Fullscreen
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detection-details">
+                    <h3>Detection Details</h3>
+                    
+                    {% if detection_count > 0 %}
+                        <div class="detection-stats">
+                            <h4>Objects Detected:</h4>
+                            <div class="stats-grid">
+                                {% for class_name, count in object_counts.items() %}
+                                    <div class="stat-item">
+                                        <div class="stat-label">{{ class_name }}</div>
+                                        <div class="stat-value">{{ count }}</div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="no-detections">
+                            <p>No objects were detected in this image.</p>
+                            <p>Try adjusting the confidence threshold or using a different image.</p>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="action-buttons">
+                    <a href="{{ url_for('index') }}" class="btn btn-outline">
+                        <i class="fas fa-arrow-left"></i> Try Another Image
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="fullscreen-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <img id="modal-image" src="" alt="Fullscreen image">
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 YOLOv8 Object Detection Project. All rights reserved.</p>
+            <p>Powered by <a href="https://github.com/ultralytics/ultralytics" target="_blank">Ultralytics YOLOv8</a></p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

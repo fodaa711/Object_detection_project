@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOLOv8 Object Detection - About</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-eye"></i> YOLOv8 Object Detection</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('about') }}" class="active">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="about-header">
+            <div class="container">
+                <h2>About This Project</h2>
+                <p>A comprehensive implementation of YOLOv8 object detection for autonomous vehicle applications, providing real-time detection of vehicles, pedestrians, traffic signs, and other road elements.</p>
+            </div>
+        </section>
+
+        <section class="about-content">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-card">
+                        <h3>What is YOLO?</h3>
+                        <p>You Only Look Once (YOLO) is a cutting-edge object detection method that significantly speeds up and simplifies the process of identifying objects in images and videos. Unlike traditional approaches, YOLO treats object detection as a single step, predicting object positions and categories directly.</p>
+                        <p>By doing so, it achieves real-time detection without sacrificing accuracy. YOLO's neural network architecture processes images swiftly, making it valuable for applications like self-driving cars, surveillance, and robotics.</p>
+                    </div>
+
+                    <div class="about-card">
+                        <h3>YOLOv8 Features</h3>
+                        <ul>
+                            <li><strong>Single-stage detection:</strong> Processes the entire image in one pass</li>
+                            <li><strong>Real-time performance:</strong> Optimized for speed without sacrificing accuracy</li>
+                            <li><strong>Multiple object classes:</strong> Detects 80 different object types</li>
+                            <li><strong>Pre-trained models:</strong> Available in various sizes (nano to extra-large)</li>
+                            <li><strong>Transfer learning:</strong> Can be fine-tuned for specific applications</li>
+                            <li><strong>Multi-task learning:</strong> Supports detection, segmentation, and classification</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="about-section">
+                    <h3>Self-Driving Car Applications</h3>
+                    <p>Object detection is a critical component of autonomous vehicle perception systems. YOLOv8 can identify various elements in driving scenarios:</p>
+                    
+                    <div class="application-grid">
+                        <div class="application-item">
+                            <div class="application-icon">
+                                <i class="fas fa-car"></i>
+                            </div>
+                            <h4>Vehicle Detection</h4>
+                            <p>Identify cars, trucks, buses, and motorcycles on the road</p>
+                        </div>
+                        
+                        <div class="application-item">
+                            <div class="application-icon">
+                                <i class="fas fa-walking"></i>
+                            </div>
+                            <h4>Pedestrian Detection</h4>
+                            <p>Detect pedestrians and cyclists for safety-critical decisions</p>
+                        </div>
+                        
+                        <div class="application-item">
+                            <div class="application-icon">
+                                <i class="fas fa-traffic-light"></i>
+                            </div>
+                            <h4>Traffic Elements</h4>
+                            <p>Recognize traffic lights, signs, and road markings</p>
+                        </div>
+                        
+                        <div class="application-item">
+                            <div class="application-icon">
+                                <i class="fas fa-road"></i>
+                            </div>
+                            <h4>Road Analysis</h4>
+                            <p>Identify lane boundaries, obstacles, and road conditions</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-section">
+                    <h3>Technical Details</h3>
+                    <p>This project uses YOLOv8m, a medium-sized variant of the YOLOv8 architecture, which offers a good balance between speed and accuracy. The model is pre-trained on the COCO dataset, which includes 80 different object classes.</p>
+                    
+                    <div class="tech-specs">
+                        <div class="spec-item">
+                            <div class="spec-label">Model Size</div>
+                            <div class="spec-value">49.7 MB</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Inference Speed</div>
+                            <div class="spec-value">~35 FPS on GPU</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">mAP (COCO val2017)</div>
+                            <div class="spec-value">50.2%</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Input Resolution</div>
+                            <div class="spec-value">640×640 pixels</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-section">
+                    <h3>Resources</h3>
+                    <div class="resources-list">
+                        <a href="https://github.com/ultralytics/ultralytics" target="_blank" class="resource-link">
+                            <i class="fab fa-github"></i>
+                            <span>Ultralytics YOLOv8 GitHub</span>
+                        </a>
+                        <a href="https://docs.ultralytics.com/" target="_blank" class="resource-link">
+                            <i class="fas fa-book"></i>
+                            <span>YOLOv8 Documentation</span>
+                        </a>
+                        <a href="https://arxiv.org/abs/1506.02640" target="_blank" class="resource-link">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Original YOLO Paper</span>
+                        </a>
+                        <a href="https://github.com/yourusername/object_detection_project" target="_blank" class="resource-link">
+                            <i class="fab fa-github"></i>
+                            <span>This Project on GitHub</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 YOLOv8 Object Detection Project. All rights reserved.</p>
+            <p>Powered by <a href="https://github.com/ultralytics/ultralytics" target="_blank">Ultralytics YOLOv8</a></p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

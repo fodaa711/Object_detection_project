@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOLOv8 Object Detection - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-eye"></i> YOLOv8 Object Detection</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}" class="active">Home</a></li>
+                    <li><a href="{{ url_for('about') }}">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2>Detect Objects in Images with YOLOv8</h2>
+                <p>Upload an image to detect objects using state-of-the-art YOLOv8 model. Perfect for identifying vehicles, pedestrians, traffic signs, and more in self-driving car scenarios.</p>
+            </div>
+        </section>
+
+        <section class="upload-section">
+            <div class="container">
+                <div class="card">
+                    <h3>Upload an Image</h3>
+                    
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <div class="alert alert-error">
+                                {% for message in messages %}
+                                    <p>{{ message }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endwith %}
+                    
+                    <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data" id="upload-form">
+                        <div class="file-upload">
+                            <div class="file-upload-placeholder" id="file-upload-placeholder">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Drag & drop an image here or click to browse</p>
+                                <p class="small">Supported formats: JPG, PNG, GIF</p>
+                            </div>
+                            <div class="file-upload-preview" id="file-upload-preview">
+                                <img id="preview-image" src="#" alt="Preview">
+                                <button type="button" id="remove-image" class="btn btn-small btn-outline">
+                                    <i class="fas fa-times"></i> Remove
+                                </button>
+                            </div>
+                            <input type="file" name="file" id="file-input" accept=".jpg,.jpeg,.png,.gif" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confidence">Confidence Threshold:</label>
+                            <div class="slider-container">
+                                <input type="range" id="confidence" name="confidence" min="0.1" max="0.9" step="0.05" value="0.25">
+                                <span id="confidence-value">0.25</span>
+                            </div>
+                            <p class="small">Higher values mean fewer but more confident detections</p>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search"></i> Detect Objects
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h3>Key Features</h3>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h4>Fast Detection</h4>
+                        <p>Real-time object detection with state-of-the-art YOLOv8 model</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <h4>Vehicle Detection</h4>
+                        <p>Accurately detect cars, trucks, buses, and other vehicles</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-walking"></i>
+                        </div>
+                        <h4>Pedestrian Detection</h4>
+                        <p>Identify pedestrians and cyclists in driving scenarios</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-traffic-light"></i>
+                        </div>
+                        <h4>Traffic Elements</h4>
+                        <p>Detect traffic lights, signs, and other road elements</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="examples">
+            <div class="container">
+                <h3>Example Detections</h3>
+                <div class="example-grid">
+                    <div class="example-card">
+                        <img src="{{ url_for('static', filename='images/example1.jpg') }}" alt="Example detection 1">
+                        <div class="example-caption">Urban street scene with vehicles and pedestrians</div>
+                    </div>
+                    <div class="example-card">
+                        <img src="{{ url_for('static', filename='images/example2.jpg') }}" alt="Example detection 2">
+                        <div class="example-caption">Highway traffic with multiple vehicles</div>
+                    </div>
+                    <div class="example-card">
+                        <img src="{{ url_for('static', filename='images/example3.jpg') }}" alt="Example detection 3">
+                        <div class="example-caption">Intersection with traffic lights and pedestrians</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 YOLOv8 Object Detection Project. All rights reserved.</p>
+            <p>Powered by <a href="https://github.com/ultralytics/ultralytics" target="_blank">Ultralytics YOLOv8</a></p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
